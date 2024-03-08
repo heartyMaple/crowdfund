@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+
+{% block title %}New conversation{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-6 text-center text-4xl text-white" style="font-family: staatliches;">New conversation</h1>
+
+<form method="post" action=".">
+    {%csrf_token%}
+    <div class="mx-6 space-y-4 text-white text-lg text-center" style="font-family: staatliches;">
+        {{form.as_p}}
+    </div>
+    {% if form.errors or form.non_field_errors%}
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">
+        {% for field in form%}
+        {{ field.errors}}
+        {% endfor %}
+
+        {{form.non_field_errors}}
+    </div>
+    {%endif%}
+    <button class="mt-6 ml-14 py-4 px-8 text-lg rounded-full font-bold" style="color: #2C4341; background-color: #B3F963; font-family: anonymous pro;">Send</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="text-white flex text-center sm:text-left">
+    <div class="mx-20 font-seibold text-lg font-crimson" tyle="font-family: staatliches;">
+        <p class="text-5xl text-center text-white" style="font-family: staatliches;">Profile information</p>
+        <h2>Username: {{ user.username }}</h2>
+        <h2>Name: {{ user.first_name }}</h2>
+        <h2>Surname: {{ user.last_name }}</h2>
+        <h2>Email: {{ user.email }}</h2>
+        <h2 class="mb-4">Balance: {{ user.profile.balance }}</h2>
+        <a href="{% url 'dashboard:edit' user.id %}" class="mt-4 py-2 px-8 text-lg rounded-full font-bold" style="color: #2C4341; background-color: #B3F963; font-family: anonymous pro;">Change information</a>
+	</div>
+</div>
+<div class=" px-6 py-12 rounded-xl">
+    <h2 class="mb-12 text-5xl text-center text-white" style="font-family: staatliches;">My projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {% for item in items %}
+        <div class="rounded-xl hover:rounded-xl bg-teal-700 hover:bg-teal-800 hover:opacity-90">
+            <a href="{% url 'item:detail' item.id %}">
+                <div>
+                    <img src="{{item.image.url}}" class="rounded-t-xl  object-cover  max-h-96" style=" min-height: 400px; min-width: 100%; max-width: 100%;">
+                </div>
+
+                <div class="p-6 ">
+                    <h2 class="text-2xl text-amber-300">{{item.name}}</h2>
+                    <p class="text-gray-500">Donation: {{item.donation}}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}
