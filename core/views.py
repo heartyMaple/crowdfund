@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignupForm
+from django.contrib.auth.models import User
+from django.db.models import Sum
 
 
 
 def index(request):
+    user_count = User.objects.count()
+    item_count = Item.objects.count()
+    progress_count = Item.objects.aggregate(progress_count=Sum('progress'))['progress_count']
     items = Item.objects.filter(is_over=False)[0:6]
     categories = Category.objects.all()
     return render(
@@ -13,6 +18,9 @@ def index(request):
         {
             "categories": categories,
             "items": items,
+            "user_count": user_count,
+            "progress_count": progress_count,
+            "item_count": item_count,
         },
     )
 
