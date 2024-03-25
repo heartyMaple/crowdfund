@@ -51,6 +51,9 @@
         {% if request.user.is_authenticated%}
 
         <li class="mx-2 my-6 md:my-0">
+          <a href="{% url 'dashboard:index' %}" class="text-xl text-white font-crimson hover:text-gray-300">Balance:{{ user.profile.balance }}</a>
+        </li>
+        <li class="mx-2 my-6 md:my-0">
           <a href="{% url 'conversation:inbox' %}" class="text-xl md:px-8 md:py-1 md:border-2 md:border-indigo-400 text-lg font-crimson text-white  rounded-full hover:text-gray-300 duration-500">Inbox</a>
         </li>
         <li class="mx-2 my-6 md:my-0">

@@ -7,6 +7,8 @@ from django.core.exceptions import ObjectDoesNotExist
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.FloatField(default=0)
+    def __str__(self):
+        return self.user
 
 
 @receiver(post_save, sender=User)

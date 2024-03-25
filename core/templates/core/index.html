@@ -59,13 +59,42 @@
                 <div class="p-6 ">
                     <h2 class="text-2xl text-amber-300">{{item.name}}</h2>
                     <p class="text-gray-400">Donation: {{item.donation}}</p>
+                    <div id="myProgress_{{ item.id }}" style="width: 100%; height: 30px; background-color: grey;">
+                        <div id="myBar_{{ item.id }}" style="width: 1%; height: 30px; background-color: green;">
+                            <div id = "text_{{ item.id }}" class="text-2xl " style="font-family: Anonymous Pro"></div>
+                        </div>
+                    </div>
                 </div>
+                
+
+                
+                
+
+                <script>
+                    
+                        
+                        var myProgress = document.getElementById("myProgress_{{ item.id }}");
+                        var myBar = document.getElementById("myBar_{{ item.id }}");
+                        var text = document.getElementById("text_{{ item.id }}");
+                        console.log(myBar);
+                
+                        var progress = {{ item.progress }};
+                        var donation = {{ item.donation }};
+                
+                        var width = Math.min(100, Math.round((progress * 100) / donation)) + "%";
+                        console.log(width);
+                        
+                        myBar.style.width = width;
+                        text.innerHTML = width;
+                        
+                        
+                </script>
+                  
             </a>
         </div>
         {% endfor %}
     </div>
 </div>
-
 
 
 

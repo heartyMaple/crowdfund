@@ -25,6 +25,8 @@
                  class="inline-block mt-6 py-3 px-6 text-lg rounded-xl font-bold" style="color: #2C4341; background-color: #B3F963; font-family: anonymous pro;">EDIT</a>
             <a href="{% url 'item:delete' item.id %}"
                 class="inline-block my-2 mt-2 px-6 py-3 text-lg font-semibol text-white rounded-xl" style="background-color: #FF5733 ">Delete</a>
+                <a href="{% url 'item:over' item.id %}"
+                class="inline-block my-2 mt-2 px-6 py-3 text-lg font-semibol text-white rounded-xl" style="background-color: #FF5733 ">Over</a>    
         </div>
         {%else %}
         <a href="{% url 'conversation:new' item.id %}"

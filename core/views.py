@@ -12,6 +12,8 @@ def index(request):
     progress_count = Item.objects.aggregate(progress_count=Sum('progress'))['progress_count']
     items = Item.objects.filter(is_over=False)[0:6]
     categories = Category.objects.all()
+    
+
     return render(
         request,
         "core\index.html",
@@ -21,6 +23,7 @@ def index(request):
             "user_count": user_count,
             "progress_count": progress_count,
             "item_count": item_count,
+            
         },
     )
 

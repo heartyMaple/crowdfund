@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 
+
 def items(request):
     query = request.GET.get("query", "")
     category_id = request.GET.get("category", "")
@@ -106,3 +107,11 @@ def donate(request,pk):
     return render(
         request, "item/donate.html", {"item": item}
     )
+
+
+@login_required
+def over(request, pk):
+    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+    item.is_over = True
+    item.save()
+    return redirect("dashboard:index")
