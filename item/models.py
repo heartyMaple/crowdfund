@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     balance = models.FloatField(default=0)
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 @receiver(post_save, sender=User)
